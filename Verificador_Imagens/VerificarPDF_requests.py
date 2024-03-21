@@ -46,8 +46,13 @@ class VerificarPDF:
         for column in ['NOVO_VALOR', 'DESCRIÇÃO']:
             if column in df.columns:
                 for nome_imagem in df[column]:
-                    nome_imagem = nome_imagem.strip().replace(" ", "%")
-                    self.formatar_url(nome_imagem, codigo_instituicao, nome_instituicao, log_caminho_arquivo)
+                    if '_' in str(nome_imagem):
+                        nome_imagem = nome_imagem.strip().replace(" ", "%")
+                        if nome_imagem.endswith('.pdf'):
+                            self.formatar_url(nome_imagem, codigo_instituicao)
+                        else:
+                            nome_imagem = nome_imagem + '.pdf'
+                            self.formatar_url(nome_imagem, codigo_instituicao)
         
         # Exclusão do arquivo processado.
         os.remove(caminho_arquivo)
