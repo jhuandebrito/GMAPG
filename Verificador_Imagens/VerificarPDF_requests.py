@@ -47,7 +47,7 @@ class VerificarPDF:
             if column in df.columns:
                 for nome_imagem in df[column].unique():
                     if '_' in str(nome_imagem):
-                        nome_imagem = nome_imagem.strip().replace(" ", "%")
+                        nome_imagem = nome_imagem.strip().replace(" ", "%20")
                         if nome_imagem.endswith('.pdf'):
                             self.formatar_url(nome_imagem, codigo_instituicao)
                         else:
