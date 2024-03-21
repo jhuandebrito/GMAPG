@@ -45,7 +45,7 @@ class VerificarPDF:
         # Verifica a presença das colunas específicas e processa cada arquivo listado.
         for column in ['NOVO_VALOR', 'DESCRIÇÃO']:
             if column in df.columns:
-                for nome_imagem in df[column]:
+                for nome_imagem in df[column].unique():
                     if '_' in str(nome_imagem):
                         nome_imagem = nome_imagem.strip().replace(" ", "%")
                         if nome_imagem.endswith('.pdf'):
